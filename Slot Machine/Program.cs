@@ -1,14 +1,20 @@
-﻿namespace HangmanGame
+﻿namespace SlotMachineGame
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int row1 = 0;
-            int row2 = 0;
-            int row3 = 0;
             Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
-
+            Random rnd = new Random();
+            int[,] slotNumber = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    slotNumber[i, j] = rnd.Next(0, 9);
+                }
+            }
         }
+
     }
 }
