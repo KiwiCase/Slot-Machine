@@ -14,6 +14,7 @@
                 for (int j = 0; j < 3; j++)
                 {
                     slotNumber[i, j] = rnd.Next(0, 9);
+                    Console.Write("{0}\t", slotNumber[i, j]);
                 }
             }
         }
