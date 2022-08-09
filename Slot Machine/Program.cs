@@ -6,19 +6,15 @@
         {
 
             int cash = 50;
-            double lines;
+            int lines = 0;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
-  
+
             Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
             Console.WriteLine($"You currently have ${cash} left.\nHow many lines would you like to play? Choose 1 to 8 lines to play.");
-            while (!double.TryParse(Console.ReadLine(), out lines))
-            {
-                Console.WriteLine("This is not a valid input. Please choose 1 to 8 lines to play.");
-            }
-
-            Console.WriteLine("Press Enter to Start...");
-
+            Int32.TryParse(Console.ReadLine(), out lines);
+            if (lines > 8 || lines < 0)
+                Console.WriteLine("This is not a valid input. Please choose 1 to 8 lines to play");
 
             for (int i = 0; i < slotNumber.GetLength(0); i++)
             {
