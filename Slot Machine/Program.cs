@@ -14,13 +14,17 @@
             while (cash > 0)
             {
                 Console.WriteLine($"You currently have ${cash}.\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
-                while (double.TryParse(Console.ReadLine(), out lines))
+                string input = Console.ReadLine();
+                while (!double.TryParse(input, out lines) || lines > 8 || lines < 0)
                 {
-                    if (lines > 8 || lines < 0)
+                    Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
+                    input = Console.ReadLine();
+                }
+                if (lines < 8 || lines > 0)
                     {
-                        Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
+                        Console.WriteLine($"You are playing {lines} lines");
                     }
-                    else break;
+   
                 }
 
                 Console.WriteLine("How many dollars per line would you like to bet? Maximum $3 per line: ");
@@ -56,4 +60,4 @@
         }
 
     }
-}
+
