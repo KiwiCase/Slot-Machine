@@ -6,7 +6,8 @@
         {
             int bet = 0;
             int cash = 25;
-            double lines = 0;
+            int lines = 0;
+            int singleSlotNumber = 0;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -15,7 +16,7 @@
             {
                 Console.WriteLine($"You currently have ${cash}.\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
                 string input = Console.ReadLine();
-                while (!double.TryParse(input, out lines) || lines > 8 || lines <= 0)
+                while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
                 {
                     Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
@@ -40,16 +41,14 @@
             {
                 for (int j = 0; j < slotNumber.GetLength(1); j++)
                 {
-                    slotNumber[i, j] = rnd.Next(0, 9);
-                    Console.Write("{0}\t", slotNumber[i, j]);
+                    if (singleSlotNumber < 9)
+                    {
+                        slotNumber[i, j] = rnd.Next(0, 9);
+                        Console.Write("{0}\t", slotNumber[i, j]);
+                        singleSlotNumber++;
+                    }
                 }
                 Console.Write("\n\n");
-                while (cash > 0)
-                {
-                    if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
-                        Console.WriteLine("YOU WIN!");
-                    else break;
-                }
             }
         }
 
