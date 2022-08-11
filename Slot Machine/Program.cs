@@ -11,7 +11,7 @@
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
-            2Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
+            Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
             while (cash > 0)
             {
                 Console.WriteLine($"You currently have ${cash}.\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
@@ -43,7 +43,6 @@
                 cash -= multiplier(lines, bet);
             }
             else cash -= bet;
-            Console.WriteLine(cash);
             Console.WriteLine($"You are playing {lines} {(lines > 1 ? "Lines" : "line")} and betting ${bet} per line for a total of ${lines * bet}. Press Enter To Spin... ");
             string keyChoice = Console.ReadLine();
 
