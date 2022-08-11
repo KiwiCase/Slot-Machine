@@ -7,13 +7,14 @@
             int bet = 0;
             int cash = 2;
             int lines = 0;
+            int lineCheck = 1;
             int singleSlotNumber = 0;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
-            static int cashCheck(int lines, int cash)
+            static int cashCheck(int lines, int lineCheck)
             {
-                int result = lines * 1;
+                int result = lines * lineCheck;
                 return result;
             }
             static int multiplier(int lines, int bet)
@@ -21,7 +22,6 @@
                 int result = lines * bet;
                 return result;
             }
-
             Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
             while (cash > 0)
             {
@@ -32,30 +32,29 @@
                     Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
                 }
-                while ((lines * 1) > cash)
+                if (cashCheck(lines, lineCheck) > cash)
                 {
                     Console.WriteLine($"You do not have enough cash to bet this many lines. You currently have ${cash} - please choose less lines to play.\nHow many lines would you like to play?");
                     input = Console.ReadLine();
                 }
-                if (lines < 8 || lines > 0)
+                if (lines <= 8 || lines > 0)
                 {
-                    Console.WriteLine($"You are playing {lines} {(lines > 1 ? "Lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
+                    Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
                     input = Console.ReadLine();
                     while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
                     {
-                        Console.WriteLine("This is not a valid input.\nPlease choose how many dollars per line you would like to bet - Maximum $3 per line:  ");
+                        Console.WriteLine("This is not a valid input. Please choose how many dollars per line you would like to bet -\nMinimum $1 per line\nMaximum $3 per line:  ");
                         input = Console.ReadLine();
                     }
                     break;
                 }
             }
-
             if (lines > 1)
             {
                 cash -= multiplier(lines, bet);
             }
             else cash -= bet;
-            Console.WriteLine($"You are playing {lines} {(lines > 1 ? "Lines" : "line")} and betting ${bet} per line for a total of ${lines * bet}. Press Enter To Spin... ");
+            Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${lines * bet}. Press Enter To Spin... ");
             string keyChoice = Console.ReadLine();
 
             for (int i = 0; i < slotNumber.GetLength(0); i++)
