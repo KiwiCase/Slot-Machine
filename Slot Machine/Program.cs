@@ -72,12 +72,17 @@
                 }
                 while (lines == 2)
                 {
-                    if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2] && slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
+                    if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2] || slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
                     {
-                        Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                        Console.WriteLine($"YOU WIN! You won ${bet * 1} and have ${(cash) + bet * 1} left");
                         break;
                     }
-                    else Console.WriteLine($"You lost ${lines * bet} and have ${(cash) - lines * bet} left.");
+                    if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2] && slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
+                    {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                            break;
+                        }
+                        else Console.WriteLine($"You lost ${lines * bet} and have ${(cash) - lines * bet} left.");
                     break;
                 }
                 while (lines == 3)
