@@ -42,14 +42,15 @@ namespace SlotMachineGame
                         input = Console.ReadLine();
                         Int32.TryParse(input, out bet);
                     }
-                    while ((bet * lines) > cash)
+                    int totalBet = bet * lines;
+                    while (totalBet > cash)
                     {
                         Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${cash} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out bet);
                     }
 
-                    Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${lines * bet}. Press Enter To Spin... ");
+                    Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
                     break;
                 }
@@ -65,7 +66,20 @@ namespace SlotMachineGame
                         }
                     }
                     Console.Write("\n\n");
+              
                 }
+
+                if (lines > 2)
+                {
+
+                    //some check
+                }
+                if (lines > 3)
+                {
+
+                    //some check
+                }
+
                 switch (lines)
                 {
                     case 1:
@@ -79,35 +93,35 @@ namespace SlotMachineGame
                         if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
                         {
                             Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
-                            
+
                         }
                         break;
                     case 3:
                         if (slotNumber[2, 0] == slotNumber[2, 1] && slotNumber[2, 0] == slotNumber[2, 2])
                         {
                             Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
-                            
+
                         }
                         break;
                     case 4:
                         if (slotNumber[0, 0] == slotNumber[1, 1] && slotNumber[0, 0] == slotNumber[2, 2])
                         {
                             Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
-                            
+
                         }
                         break;
                     case 5:
                         if (slotNumber[2, 0] == slotNumber[1, 2] && slotNumber[2, 0] == slotNumber[0, 2])
                         {
                             Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
-                            
+
                         }
                         break;
                     case 6:
                         if (slotNumber[0, 0] == slotNumber[1, 0] && slotNumber[0, 0] == slotNumber[2, 0])
                         {
                             Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
-                           
+
                         }
                         break;
                     case 7:
@@ -198,7 +212,10 @@ namespace SlotMachineGame
                 break;
             }
             if (cash > 0)
+            {
+
                 Console.WriteLine("Continue playing? Press Y to play again or N to stop.");
+            }
         }
 
     }
