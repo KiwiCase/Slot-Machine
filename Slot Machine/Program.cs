@@ -11,6 +11,7 @@ namespace SlotMachineGame
             int lines = 0;
             int singleSlotNumber = 0;
             char playAgain = 'Y';
+            string input = "";
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -20,7 +21,7 @@ namespace SlotMachineGame
                 while (playAgain == 'Y')
                 {
                     Console.WriteLine($"You currently have ${cash}.\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
                     while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
                     {
                         Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
@@ -69,11 +70,57 @@ namespace SlotMachineGame
                 {
                     case 1:
                         if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2])
-                            if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
-                                if (slotNumber[2, 0] == slotNumber[2, 1] && slotNumber[2, 0] == slotNumber[2, 2])
-                                    if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[2, 0])
-                                        if (slotNumber[0, 1] == slotNumber[1, 1] && slotNumber[0, 1] == slotNumber[2, 1])
-                                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+
+                        }
+                        break;
+                    case 2:
+                        if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                            
+                        }
+                        break;
+                    case 3:
+                        if (slotNumber[2, 0] == slotNumber[2, 1] && slotNumber[2, 0] == slotNumber[2, 2])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                            
+                        }
+                        break;
+                    case 4:
+                        if (slotNumber[0, 0] == slotNumber[1, 1] && slotNumber[0, 0] == slotNumber[2, 2])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                            
+                        }
+                        break;
+                    case 5:
+                        if (slotNumber[2, 0] == slotNumber[1, 2] && slotNumber[2, 0] == slotNumber[0, 2])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                            
+                        }
+                        break;
+                    case 6:
+                        if (slotNumber[0, 0] == slotNumber[1, 0] && slotNumber[0, 0] == slotNumber[2, 0])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                           
+                        }
+                        break;
+                    case 7:
+                        if (slotNumber[0, 1] == slotNumber[1, 1] && slotNumber[0, 1] == slotNumber[2, 1])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                        }
+                        break;
+                    case 8:
+                        if (slotNumber[0, 1] == slotNumber[1, 1] && slotNumber[0, 1] == slotNumber[2, 1])
+                        {
+                            Console.WriteLine($"YOU WIN! You won ${lines * bet} and have ${(cash) + lines * bet} left");
+                        }
                         break;
                 }
             }
