@@ -12,7 +12,8 @@ namespace SlotMachineGame
             int singleSlotNumber = 0;
             char playAgain = 'Y';
             string input = "";
-
+            int totalBet = bet * lines;
+            int totalPayout = 0;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -43,7 +44,7 @@ namespace SlotMachineGame
                         input = Console.ReadLine();
                         Int32.TryParse(input, out bet);
                     }
-                    int totalBet = bet * lines;
+                    totalBet = bet * lines;
                     while (totalBet > cash)
                     {
                         Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${cash} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
@@ -61,7 +62,7 @@ namespace SlotMachineGame
                     {
                         if (singleSlotNumber < 9)
                         {
-                            slotNumber[i, j] = rnd.Next(0, 2);
+                            slotNumber[i, j] = rnd.Next(0, 1);
                             Console.Write("{0}\t", slotNumber[i, j]);
                             singleSlotNumber++;
                         }
@@ -69,25 +70,65 @@ namespace SlotMachineGame
                     Console.Write("\n\n");
 
                 }
-                int totalPayout = lines * bet;
-                if (lines > 1)
+                totalPayout = 0;
+                if (lines > 0)
                 {
                     if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2])
                     {
-                       int i = totalPayout;
+                        totalPayout++;
                     }
-
+                }
+                if (lines > 1)
+                {
                     if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
                     {
-                        int i = totalPayout;
+                        totalPayout++;
+                    }
+                }
+                if (lines > 2)
+                {
+                    if (slotNumber[2, 0] == slotNumber[2, 1] && slotNumber[2, 0] == slotNumber[2, 2])
+                    {
+                        totalPayout++;
                     }
                 }
                 if (lines > 3)
                 {
-
-                    //some check
+                    if (slotNumber[0, 0] == slotNumber[1, 1] && slotNumber[0, 0] == slotNumber[2, 2])
+                    {
+                        totalPayout++;
+                    }
                 }
-            }
+                if (lines > 4)
+                {
+                    if (slotNumber[2, 0] == slotNumber[1, 1] && slotNumber[2, 0] == slotNumber[0, 2])
+                    {
+                        totalPayout++;
+                    }
+                }
+                if (lines > 5)
+                {
+                    if (slotNumber[0, 0] == slotNumber[1, 0] && slotNumber[0, 0] == slotNumber[2, 0])
+                    {
+                        totalPayout++;
+                    }
+                }
+                if (lines > 6)
+                {
+                    if (slotNumber[0, 1] == slotNumber[1, 1] && slotNumber[0, 1] == slotNumber[2, 1])
+                    {
+                        totalPayout++;
+                    }
+                }
+                if (lines > 7)
+                {
+                    if (slotNumber[0, 2] == slotNumber[1, 2] && slotNumber[0, 2] == slotNumber[2, 2])
+                    {
+                        totalPayout++;
+                    }
+                } Console.WriteLine(totalPayout);
+       
+            }   
         }
 
     }
