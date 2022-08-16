@@ -13,16 +13,15 @@ namespace SlotMachineGame
             char playAgain = 'Y';
             string input = "";
             int totalBet = bet * lines;
-            int totalPayout = 0;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
-            Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
+            Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nYou currently have ${cash}.");
             while (cash > 0)
             {
                 while (playAgain == 'Y')
                 {
-                    Console.WriteLine($"You currently have ${cash}.\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
+                    Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
                     while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
                     {
@@ -70,65 +69,75 @@ namespace SlotMachineGame
                     Console.Write("\n\n");
 
                 }
-                totalPayout = 0;
+                int totalLines = 0;
                 if (lines > 0)
                 {
                     if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 1)
                 {
                     if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 2)
                 {
                     if (slotNumber[2, 0] == slotNumber[2, 1] && slotNumber[2, 0] == slotNumber[2, 2])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 3)
                 {
                     if (slotNumber[0, 0] == slotNumber[1, 1] && slotNumber[0, 0] == slotNumber[2, 2])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 4)
                 {
                     if (slotNumber[2, 0] == slotNumber[1, 1] && slotNumber[2, 0] == slotNumber[0, 2])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 5)
                 {
                     if (slotNumber[0, 0] == slotNumber[1, 0] && slotNumber[0, 0] == slotNumber[2, 0])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 6)
                 {
                     if (slotNumber[0, 1] == slotNumber[1, 1] && slotNumber[0, 1] == slotNumber[2, 1])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
                 }
                 if (lines > 7)
                 {
                     if (slotNumber[0, 2] == slotNumber[1, 2] && slotNumber[0, 2] == slotNumber[2, 2])
                     {
-                        totalPayout++;
+                        totalLines++;
                     }
-                } Console.WriteLine(totalPayout);
-       
-            }   
+                }
+                int totalCash = totalBet + cash;
+                int totalLoss = cash - totalBet;
+                while (totalLines > 0)
+                {
+                    Console.WriteLine($"You won {totalLines} lines and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
+
+                }
+                if (totalLines == 0)
+                {
+                    Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${totalLoss} left.\nPress Y to play again or N to quit.");
+                }
+            }
         }
 
     }
