@@ -11,15 +11,16 @@ namespace SlotMachineGame
             int lines = 0;
             int singleSlotNumber = 0;
             char playAgain = 'Y';
+            string response;
             string input = "";
             int totalBet = bet * lines;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
             Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nYou currently have ${cash}.");
-            while (cash > 0)
+            while (playAgain == 'Y')
             {
-                while (playAgain == 'Y')
+                while (cash > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
@@ -131,9 +132,17 @@ namespace SlotMachineGame
                 while (totalLines > 0)
                 {
                     Console.WriteLine($"You won {totalLines} lines and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
-
+                    response = Console.ReadKey().KeyChar.ToString().ToUpper();
+             
+                    
+                    if (response == "Y")
+                    {
+                        Console.WriteLine();
+                        singleSlotNumber = 0;
+                        break;
+                    }
                 }
-                if (totalLines == 0)
+                while (totalLines == 0)
                 {
                     Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${totalLoss} left.\nPress Y to play again or N to quit.");
                 }
