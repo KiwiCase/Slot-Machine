@@ -133,18 +133,32 @@ namespace SlotMachineGame
                 {
                     Console.WriteLine($"You won {totalLines} lines and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
-             
-                    
+
                     if (response == "Y")
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
                         break;
                     }
+                    else break;
                 }
                 while (totalLines == 0)
                 {
                     Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${totalLoss} left.\nPress Y to play again or N to quit.");
+                    response = Console.ReadKey().KeyChar.ToString().ToUpper();
+
+                    if (response == "Y")
+                    {
+                        Console.WriteLine();
+                        singleSlotNumber = 0;
+                        break;
+                    }
+                    else break;
+                }
+
+                {
+                    Console.WriteLine("OK then - Goodbye!");
+                    break;
                 }
             }
         }
