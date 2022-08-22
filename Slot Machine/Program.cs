@@ -13,9 +13,6 @@ namespace SlotMachineGame
             char playAgain = 'Y';
             string response;
             string input = "";
-            int totalBet = bet * lines;
-            int totalCash = totalBet + userCash;
-            int totalLoss = userCash - totalBet;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -30,6 +27,9 @@ namespace SlotMachineGame
             }
             while (playAgain == 'Y')
             {
+                int totalBet = bet * lines;
+                int totalCash = totalBet + userCash;
+                int totalLoss = userCash - totalBet;
                 while (totalCash > 0 || userCash > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
