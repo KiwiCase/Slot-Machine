@@ -14,6 +14,8 @@ namespace SlotMachineGame
             string response;
             string input = "";
             int totalBet = bet * lines;
+            int totalCash = totalBet + userCash;
+            int totalLoss = userCash - totalBet;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -22,11 +24,14 @@ namespace SlotMachineGame
             while (!Int32.TryParse(input, out userCash) || userCash < 1 || userCash <= 0)
             {
                 Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
-            }
+                input = Console.ReadLine();
+                Int32.TryParse(input, out userCash);
 
-                while (playAgain == 'Y')
+            }
+            Console.WriteLine(totalCash);
+            while (playAgain == 'Y')
             {
-                while (userCash > 0)
+                while (totalCash > 0 || userCash > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
@@ -36,6 +41,7 @@ namespace SlotMachineGame
                         input = Console.ReadLine();
                         Int32.TryParse(input, out lines);
                     }
+                    Console.WriteLine(lines);
                     while (lines > userCash)
                     {
                         Console.WriteLine($"You do not have enough userCash to play this many lines. You currently have ${userCash} - please choose less lines to play.\nHow many lines would you like to play?");
@@ -53,9 +59,11 @@ namespace SlotMachineGame
                     totalBet = bet * lines;
                     while (totalBet > userCash)
                     {
-                        Console.WriteLine($"You do not have enough userCash to bet this amount per line. You currently have ${userCash} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
+                        Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${userCash} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
                         input = Console.ReadLine();
+                        totalBet = 0;
                         Int32.TryParse(input, out bet);
+                        totalBet = bet * lines;
                     }
 
                     Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
@@ -133,11 +141,11 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
-                int totalCash = totalBet + userCash;
-                int totalLoss = userCash - totalBet;
+                totalCash = totalBet + userCash;
+                response = "";
                 while (totalLines > 0)
                 {
-                    Console.WriteLine($"You won {totalLines} lines and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
+                    Console.WriteLine($"You won {lines} {(lines > 1 ? "lines" : "line")} and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
 
                     if (response == "Y")
@@ -148,6 +156,7 @@ namespace SlotMachineGame
                     }
                     else break;
                 }
+                totalLoss = userCash - totalBet;
                 while (totalLines == 0)
                 {
                     Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${totalLoss} left.\nPress Y to play again or N to quit.");
@@ -161,17 +170,20 @@ namespace SlotMachineGame
                     }
                     else break;
                 }
-
+                if (response == "N")
                 {
-                    Console.WriteLine("OK then - Goodbye!");
+                    Console.WriteLine("OK then...Goodbye!");
                     break;
                 }
+                
             }
-        }
 
+        }
     }
 
 }
+
+
 
 
 
