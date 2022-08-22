@@ -28,7 +28,6 @@ namespace SlotMachineGame
                 Int32.TryParse(input, out userCash);
 
             }
-            Console.WriteLine(totalCash);
             while (playAgain == 'Y')
             {
                 while (totalCash > 0 || userCash > 0)
