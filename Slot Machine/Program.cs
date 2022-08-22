@@ -171,6 +171,7 @@ namespace SlotMachineGame
                 }
                 if (response == "N")
                 {
+                    Console.WriteLine();
                     Console.WriteLine("OK then...Goodbye!");
                     break;
                 }
