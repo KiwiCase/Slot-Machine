@@ -7,7 +7,7 @@ namespace SlotMachineGame
         static void Main(string[] args)
         {
             int bet = 0;
-            int cash = 25;
+            int userCash = 0;
             int lines = 0;
             int singleSlotNumber = 0;
             char playAgain = 'Y';
@@ -17,10 +17,16 @@ namespace SlotMachineGame
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
-            Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nYou currently have ${cash}.");
-            while (playAgain == 'Y')
+            Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
+            input = Console.ReadLine();
+            while (!Int32.TryParse(input, out userCash) || userCash < 1 || userCash <= 0)
             {
-                while (cash > 0)
+                Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
+            }
+
+                while (playAgain == 'Y')
+            {
+                while (userCash > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
@@ -30,9 +36,9 @@ namespace SlotMachineGame
                         input = Console.ReadLine();
                         Int32.TryParse(input, out lines);
                     }
-                    while (lines > cash)
+                    while (lines > userCash)
                     {
-                        Console.WriteLine($"You do not have enough cash to play this many lines. You currently have ${cash} - please choose less lines to play.\nHow many lines would you like to play?");
+                        Console.WriteLine($"You do not have enough userCash to play this many lines. You currently have ${userCash} - please choose less lines to play.\nHow many lines would you like to play?");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out lines);
                     }
@@ -45,9 +51,9 @@ namespace SlotMachineGame
                         Int32.TryParse(input, out bet);
                     }
                     totalBet = bet * lines;
-                    while (totalBet > cash)
+                    while (totalBet > userCash)
                     {
-                        Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${cash} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
+                        Console.WriteLine($"You do not have enough userCash to bet this amount per line. You currently have ${userCash} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out bet);
                     }
@@ -127,8 +133,8 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
-                int totalCash = totalBet + cash;
-                int totalLoss = cash - totalBet;
+                int totalCash = totalBet + userCash;
+                int totalLoss = userCash - totalBet;
                 while (totalLines > 0)
                 {
                     Console.WriteLine($"You won {totalLines} lines and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
