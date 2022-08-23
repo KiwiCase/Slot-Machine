@@ -8,7 +8,6 @@ namespace SlotMachineGame
         {
             int bet = 0;
             int userCash = 0;
-            int lines = 0;
             int singleSlotNumber = 0;
             char playAgain = 'Y';
             string response;
@@ -27,9 +26,12 @@ namespace SlotMachineGame
             }
             while (playAgain == 'Y')
             {
+                int lines = 0;
                 int totalBet = bet * lines;
                 int totalCash = totalBet + userCash;
                 int totalLoss = userCash - totalBet;
+                Console.WriteLine(totalCash);
+                Console.WriteLine(userCash);
                 while (totalCash > 0 || userCash > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
@@ -45,7 +47,6 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine($"You do not have enough userCash to play this many lines. You currently have ${userCash} - please choose less lines to play.\nHow many lines would you like to play?");
                         input = Console.ReadLine();
-                        Int32.TryParse(input, out lines);
                     }
                     Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
                     input = Console.ReadLine();
@@ -142,7 +143,7 @@ namespace SlotMachineGame
                 }
                 totalCash = totalBet + userCash;
                 response = "";
-                while (totalLines > 0)
+                if (totalLines > 0)
                 {
                     Console.WriteLine($"You won {lines} {(lines > 1 ? "lines" : "line")} and ${totalBet}!\nYou have a total of ${totalCash} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
@@ -151,12 +152,12 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-                        break;
+                        Console.WriteLine(totalCash);
                     }
                     else break;
                 }
                 totalLoss = userCash - totalBet;
-                while (totalLines == 0)
+                if (totalLines == 0)
                 {
                     Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${totalLoss} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
@@ -165,7 +166,7 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-                        break;
+                        totalLines = 0;
                     }
                     else break;
                 }
