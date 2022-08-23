@@ -154,7 +154,6 @@ namespace SlotMachineGame
                         singleSlotNumber = 0;
                         Console.WriteLine(totalCash);
                     }
-                    else break;
                 }
                 totalLoss = userCash - totalBet;
                 if (totalLines == 0)
@@ -168,7 +167,6 @@ namespace SlotMachineGame
                         singleSlotNumber = 0;
                         totalLines = 0;
                     }
-                    else break;
                 }
                 if (response == "N")
                 {
