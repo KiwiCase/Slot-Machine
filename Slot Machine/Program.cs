@@ -29,8 +29,6 @@ namespace SlotMachineGame
             {
                 int lines = 0;
                 int totalBet = bet * lines;
-
-                
                 while (credits > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
@@ -80,7 +78,7 @@ namespace SlotMachineGame
                     {
                         if (singleSlotNumber < 9)
                         {
-                            slotNumber[i, j] = rnd.Next(0, 1);
+                            slotNumber[i, j] = rnd.Next(0, 3);
                             Console.Write("{0}\t", slotNumber[i, j]);
                             singleSlotNumber++;
                         }
@@ -165,11 +163,10 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-                        totalLines = 0;
+                        
                     }
                 }
-
-                
+    
                 if (totalLines == 0)
                 {
                     credits -= totalBet;
@@ -180,7 +177,7 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-                        totalLines = 0;   
+  
                     }
                 }
 
