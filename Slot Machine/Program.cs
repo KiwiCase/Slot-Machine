@@ -29,7 +29,7 @@ namespace SlotMachineGame
             {
                 int lines = 0;
                 int totalBet = bet * lines;
-                int totalLoss = credits - totalBet;
+
                 
                 while (credits > 0)
                 {
@@ -157,6 +157,7 @@ namespace SlotMachineGame
                 response = "";
                 if (totalLines > 0)
                 {
+                    credits += totalBet;
                     Console.WriteLine($"You won {lines} {(lines > 1 ? "lines" : "line")} and ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
 
@@ -164,13 +165,14 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-
+                        totalLines = 0;
                     }
                 }
 
-                totalLoss = credits - totalBet;
+                
                 if (totalLines == 0)
                 {
+                    credits -= totalBet;
                     Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
 
@@ -178,7 +180,7 @@ namespace SlotMachineGame
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-                        totalLines = 0;
+                        totalLines = 0;   
                     }
                 }
 
