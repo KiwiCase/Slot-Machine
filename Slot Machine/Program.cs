@@ -24,34 +24,41 @@ namespace SlotMachineGame
                 Int32.TryParse(input, out credits);
 
             }
+
             while (playAgain == 'Y')
             {
                 int lines = 0;
                 int totalBet = bet * lines;
                 int totalLoss = credits - totalBet;
+                
                 while (credits > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
+
                     while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
                     {
                         Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out lines);
                     }
+
                     while (lines > credits)
                     {
                         Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\nHow many lines would you like to play?");
                         input = Console.ReadLine();
                     }
+
                     Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
                     input = Console.ReadLine();
+
                     while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
                     {
                         Console.WriteLine("This is not a valid input - please choose how many dollars per line you would like to bet -\nMinimum $1 per line\nMaximum $3 per line:  ");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out bet);
                     }
+
                     totalBet = bet * lines;
                     while (totalBet > credits)
                     {
@@ -66,6 +73,7 @@ namespace SlotMachineGame
                     string keyChoice = Console.ReadLine();
                     break;
                 }
+
                 for (int i = 0; i < slotNumber.GetLength(0); i++)
                 {
                     for (int j = 0; j < slotNumber.GetLength(1); j++)
@@ -80,6 +88,7 @@ namespace SlotMachineGame
                     Console.Write("\n\n");
 
                 }
+
                 int totalLines = 0;
                 if (lines > 0)
                 {
@@ -88,6 +97,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 1)
                 {
                     if (slotNumber[0, 0] == slotNumber[0, 1] && slotNumber[0, 0] == slotNumber[0, 2])
@@ -95,6 +105,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 2)
                 {
                     if (slotNumber[2, 0] == slotNumber[2, 1] && slotNumber[2, 0] == slotNumber[2, 2])
@@ -102,6 +113,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 3)
                 {
                     if (slotNumber[0, 0] == slotNumber[1, 1] && slotNumber[0, 0] == slotNumber[2, 2])
@@ -109,6 +121,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 4)
                 {
                     if (slotNumber[2, 0] == slotNumber[1, 1] && slotNumber[2, 0] == slotNumber[0, 2])
@@ -116,6 +129,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 5)
                 {
                     if (slotNumber[0, 0] == slotNumber[1, 0] && slotNumber[0, 0] == slotNumber[2, 0])
@@ -123,6 +137,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 6)
                 {
                     if (slotNumber[0, 1] == slotNumber[1, 1] && slotNumber[0, 1] == slotNumber[2, 1])
@@ -130,6 +145,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 if (lines > 7)
                 {
                     if (slotNumber[0, 2] == slotNumber[1, 2] && slotNumber[0, 2] == slotNumber[2, 2])
@@ -137,6 +153,7 @@ namespace SlotMachineGame
                         totalLines++;
                     }
                 }
+
                 response = "";
                 if (totalLines > 0)
                 {
@@ -150,6 +167,7 @@ namespace SlotMachineGame
 
                     }
                 }
+
                 totalLoss = credits - totalBet;
                 if (totalLines == 0)
                 {
@@ -163,6 +181,7 @@ namespace SlotMachineGame
                         totalLines = 0;
                     }
                 }
+
                 if (response == "N")
                 {
                     Console.WriteLine();
