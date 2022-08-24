@@ -28,7 +28,9 @@ namespace SlotMachineGame
             while (playAgain == 'Y')
             {
                 int lines = 0;
+                int totalLines = 0;
                 int totalBet = bet * lines;
+                int singleLineWinnings = totalLines * bet;
                 while (credits > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
@@ -78,7 +80,7 @@ namespace SlotMachineGame
                     {
                         if (singleSlotNumber < 9)
                         {
-                            slotNumber[i, j] = rnd.Next(0, 3);
+                            slotNumber[i, j] = rnd.Next(0, 1);
                             Console.Write("{0}\t", slotNumber[i, j]);
                             singleSlotNumber++;
                         }
@@ -87,7 +89,7 @@ namespace SlotMachineGame
 
                 }
 
-                int totalLines = 0;
+                totalLines = 0;
                 if (lines > 0)
                 {
                     if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2])
@@ -155,30 +157,42 @@ namespace SlotMachineGame
                 response = "";
                 if (totalLines > 0)
                 {
-                    credits += totalBet;
-                    Console.WriteLine($"You won {lines} {(lines > 1 ? "lines" : "line")} and ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
+                    singleLineWinnings = totalLines * bet;
+                    credits += singleLineWinnings;
+                    Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
 
                     if (response == "Y")
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-                        
+                        lines = 0;
                     }
                 }
-    
+
                 if (totalLines == 0)
                 {
                     credits -= totalBet;
-                    Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
-                    response = Console.ReadKey().KeyChar.ToString().ToUpper();
+                    if (credits > 0)
+                    {
+                        Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
+                        response = Console.ReadKey().KeyChar.ToString().ToUpper();
+                    
+                    }
 
                     if (response == "Y")
                     {
                         Console.WriteLine();
                         singleSlotNumber = 0;
-  
+                        lines = 0;
                     }
+
+                    if (credits == 0)
+                    {
+                        Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
+                        break;
+                    }
+
                 }
 
                 if (response == "N")
@@ -187,7 +201,7 @@ namespace SlotMachineGame
                     Console.WriteLine("OK then...Goodbye!");
                     break;
                 }
-                
+
             }
 
         }
