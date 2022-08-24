@@ -80,7 +80,7 @@ namespace SlotMachineGame
                     {
                         if (singleSlotNumber < 9)
                         {
-                            slotNumber[i, j] = rnd.Next(0, 1);
+                            slotNumber[i, j] = rnd.Next(0, 4);
                             Console.Write("{0}\t", slotNumber[i, j]);
                             singleSlotNumber++;
                         }
