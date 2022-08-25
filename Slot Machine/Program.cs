@@ -5,7 +5,7 @@ namespace SlotMachineGame
     internal class Program
     {
         static void Main(string[] args)
-        {
+        {   //Important vairables and Random Number Generator
             int bet = 0;
             int credits = 0;
             int singleSlotNumber = 0;
@@ -14,7 +14,8 @@ namespace SlotMachineGame
             string input = "";
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
-
+            
+            //Cash amount, intergers above 0 only
             Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
             input = Console.ReadLine();
             while (!Int32.TryParse(input, out credits) || credits < 1 || credits <= 0)
@@ -22,11 +23,12 @@ namespace SlotMachineGame
                 Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
                 input = Console.ReadLine();
                 Int32.TryParse(input, out credits);
-
             }
 
+            //Play Again loop
             while (playAgain == 'Y')
             {
+                //Lines played and betting amount variables. No invalid inputs
                 int lines = 0;
                 int totalLines = 0;
                 int totalBet = bet * lines;
@@ -74,6 +76,7 @@ namespace SlotMachineGame
                     break;
                 }
 
+                //Creates grid array of 9 random numbers
                 for (int i = 0; i < slotNumber.GetLength(0); i++)
                 {
                     for (int j = 0; j < slotNumber.GetLength(1); j++)
@@ -88,7 +91,7 @@ namespace SlotMachineGame
                     Console.Write("\n\n");
 
                 }
-
+                //Checks each line for matching numbers
                 totalLines = 0;
                 if (lines > 0)
                 {
@@ -157,6 +160,7 @@ namespace SlotMachineGame
                 response = "";
                 if (totalLines > 0)
                 {
+                    //Payout calculation and Play Again
                     singleLineWinnings = totalLines * bet;
                     credits += singleLineWinnings;
                     Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
@@ -171,7 +175,8 @@ namespace SlotMachineGame
                 }
 
                 if (totalLines == 0)
-                {
+                {   
+                    //Loss deduction calculation and Play Again
                     credits -= totalBet;
                     if (credits > 0)
                     {
