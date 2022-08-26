@@ -28,7 +28,6 @@ namespace SlotMachineGame
             {
                 //Lines played and betting amount variables. No invalid inputs
                 int lines = 0;
-                int singleSlotNumber = 0;
                 int totalLines = 0;
                 int totalBet = bet * lines;
                 int singleLineWinnings = totalLines * bet;
