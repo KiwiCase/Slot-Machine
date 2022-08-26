@@ -165,11 +165,6 @@ namespace SlotMachineGame
                     Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
 
-                    if (response == "Y")
-                    {
-                        Console.WriteLine();
-                        lines = 0;
-                    }
                 }
 
                 if (totalLines == 0)
