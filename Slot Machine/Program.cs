@@ -10,14 +10,13 @@ namespace SlotMachineGame
             int credits = 0;
             char playAgain = 'Y';
             string response;
-            string input = "";
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
             
             //Cash amount, intergers above 0 only
             Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
-            input = Console.ReadLine();
-            while (!Int32.TryParse(input, out credits) || credits < 1 || credits <= 0)
+            string input = Console.ReadLine();
+            while (!Int32.TryParse(input, out credits) || credits < 1)
             {
                 Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
                 input = Console.ReadLine();
@@ -80,11 +79,10 @@ namespace SlotMachineGame
                 {
                     for (int j = 0; j < slotNumber.GetLength(1); j++)
                     {
-                        if (singleSlotNumber < 9)
+
                         {
                             slotNumber[i, j] = rnd.Next(0, 4);
                             Console.Write("{0}\t", slotNumber[i, j]);
-                            singleSlotNumber++;
                         }
                     }
                     Console.Write("\n\n");
@@ -167,7 +165,7 @@ namespace SlotMachineGame
 
                 }
 
-                if (totalLines == 0)
+                else totalLines = 0;
                 {   
                     //Loss deduction calculation and Play Again
                     credits -= totalBet;
