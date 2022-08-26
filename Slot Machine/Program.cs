@@ -5,10 +5,9 @@ namespace SlotMachineGame
     internal class Program
     {
         static void Main(string[] args)
-        {   //Important vairables and Random Number Generator
+        {   //Important variables and Random Number Generator
             int bet = 0;
             int credits = 0;
-            int singleSlotNumber = 0;
             char playAgain = 'Y';
             string response;
             string input = "";
@@ -30,10 +29,11 @@ namespace SlotMachineGame
             {
                 //Lines played and betting amount variables. No invalid inputs
                 int lines = 0;
+                int singleSlotNumber = 0;
                 int totalLines = 0;
                 int totalBet = bet * lines;
                 int singleLineWinnings = totalLines * bet;
-                while (credits > 0)
+                if (credits > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
@@ -73,7 +73,6 @@ namespace SlotMachineGame
 
                     Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
-                    break;
                 }
 
                 //Creates grid array of 9 random numbers
@@ -169,7 +168,6 @@ namespace SlotMachineGame
                     if (response == "Y")
                     {
                         Console.WriteLine();
-                        singleSlotNumber = 0;
                         lines = 0;
                     }
                 }
@@ -183,13 +181,6 @@ namespace SlotMachineGame
                         Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
                         response = Console.ReadKey().KeyChar.ToString().ToUpper();
                     
-                    }
-
-                    if (response == "Y")
-                    {
-                        Console.WriteLine();
-                        singleSlotNumber = 0;
-                        lines = 0;
                     }
 
                     if (credits == 0)
