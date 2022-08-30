@@ -1,5 +1,4 @@
-﻿using Slot_Machine;
-using System;
+﻿using System;
 
 namespace SlotMachineGame
 {
@@ -13,20 +12,16 @@ namespace SlotMachineGame
             string response;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
-
-            UIMethods.DisplayWelcomeMessage();
-
-            UIMethods.RequestCashAmount();
-
-            UIMethods.CashAmountValidation(credits);
-
-            UIMethods.RequestLinesToPlay(credits);
-
-
+            
             //Cash amount, intergers above 0 only
-
-
-
+            Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
+            string input = Console.ReadLine();
+            while (!Int32.TryParse(input, out credits) || credits < 1)
+            {
+                Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
+                input = Console.ReadLine();
+                Int32.TryParse(input, out credits);
+            }
 
             //Play Again loop
             while (playAgain == 'Y')
@@ -39,7 +34,7 @@ namespace SlotMachineGame
                 if (credits > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
 
                     while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
                     {
@@ -77,7 +72,6 @@ namespace SlotMachineGame
                     Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
                 }
-
 
                 //Creates grid array of 9 random numbers
                 for (int i = 0; i < slotNumber.GetLength(0); i++)
