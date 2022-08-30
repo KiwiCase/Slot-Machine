@@ -11,7 +11,6 @@ namespace SlotMachineGame
             int credits = 0;
             char playAgain = 'Y';
             string response;
-            string input = "";
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -19,7 +18,7 @@ namespace SlotMachineGame
 
             UIMethods.RequestCashAmount();
 
-            UIMethods.CashAmountValidation(credits, input);
+            UIMethods.CashAmountValidation(credits);
 
             UIMethods.RequestLinesToPlay(credits);
 
@@ -40,7 +39,7 @@ namespace SlotMachineGame
                 if (credits > 0)
                 {
                     Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
-                    input = Console.ReadLine();
+                    string input = Console.ReadLine();
 
                     while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
                     {
