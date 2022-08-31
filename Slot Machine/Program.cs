@@ -190,7 +190,7 @@ namespace SlotMachineGame
                     break;
                 }
 
-            } //Congif username and email testing
+            } 
 
         }
     }
