@@ -71,5 +71,15 @@ namespace Slot_Machine
             totalBet = bet * lines;
             return totalBet;
         }
+        public static int NotEnoughCreditsToPlayBet(int lines, int bet, int credits)
+        {
+            Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
+            int totalBet = 0;
+            string input = Console.ReadLine();
+            Int32.TryParse(input, out bet);
+            totalBet = lines * bet;
+            Console.WriteLine(totalBet);
+            return totalBet;
+        }
     }
 }

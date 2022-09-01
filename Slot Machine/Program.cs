@@ -67,16 +67,22 @@ namespace SlotMachineGame
                         Int32.TryParse(input, out bet);
                     }*/
                     bet = UIMethods.RequestBetToPlay(lines);
+
                     //totalBet = bet * lines;
                     totalBet = UIMethods.TotalBetAmount(lines, bet);
-                    while (totalBet > credits)
+
+                    while (totalBet >= credits)
                     {
-                        Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
+                        /*Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
                         input = Console.ReadLine();
                         totalBet = 0;
                         Int32.TryParse(input, out bet);
-                        totalBet = bet * lines;
+                        totalBet = bet * lines;*/
+                        totalBet = 0;
+                        UIMethods.NotEnoughCreditsToPlayBet(lines, bet, credits);
                     }
+
+                    totalBet = UIMethods.TotalBetAmount(lines, bet);
 
                     Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
