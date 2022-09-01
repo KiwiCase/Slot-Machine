@@ -29,5 +29,20 @@ namespace Slot_Machine
             return credits;
         }
 
+        public static int RequestLinesToPlay(int credits)
+        {
+            int lines = 0;
+            Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
+            string input = Console.ReadLine();
+
+            while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
+            {
+                Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
+                input = Console.ReadLine();
+                Int32.TryParse(input, out lines);
+            }
+            return lines;
+        }
+
     }
 }

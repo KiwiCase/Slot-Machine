@@ -19,16 +19,15 @@ namespace SlotMachineGame
             UIMethods.DisplayWelcomeMessage();
 
             //Console.WriteLine("How much cash would you like to use? Minimum $1: ") - Method below
-            UIMethods.RequestCashToPlay();
-
             credits = UIMethods.RequestCashToPlay();
 
+            /*
             while (!Int32.TryParse(input, out credits) || credits < 1)
             {
                 Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
                 input = Console.ReadLine();
                 Int32.TryParse(input, out credits);
-            }
+            }*/
 
             //Play Again loop
             while (playAgain == 'Y')
@@ -40,7 +39,7 @@ namespace SlotMachineGame
                 int singleLineWinnings = totalLines * bet;
                 if (credits > 0)
                 {
-                    Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
+                    /*Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
                     input = Console.ReadLine();
 
                     while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
@@ -48,7 +47,8 @@ namespace SlotMachineGame
                         Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out lines);
-                    }
+                    }*/
+                    lines = UIMethods.RequestLinesToPlay(credits);
 
                     while (lines > credits)
                     {
