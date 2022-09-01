@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Slot_Machine;
+using System;
 
 namespace SlotMachineGame
 {
@@ -12,9 +13,12 @@ namespace SlotMachineGame
             string response;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
-            
+
             //Cash amount, intergers above 0 only
-            Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
+            //Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
+            UIMethods.DisplayWelcomeMessage();
+
+
             string input = Console.ReadLine();
             while (!Int32.TryParse(input, out credits) || credits < 1)
             {
