@@ -32,7 +32,7 @@ namespace Slot_Machine
         public static int RequestLinesToPlay(int credits)
         {
             int lines = 0;
-            Console.WriteLine("How many lines would you like to play? Choose 1 to 8 lines to play: ");
+            Console.WriteLine("\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
             string input = Console.ReadLine();
 
             while (!Int32.TryParse(input, out lines) || lines > 8 || lines <= 0)
@@ -41,6 +41,13 @@ namespace Slot_Machine
                 input = Console.ReadLine();
                 Int32.TryParse(input, out lines);
             }
+            return lines;
+        }
+        public static int NotEnoughCreditsToPlayLines(int credits)
+        {
+            Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\nHow many lines would you like to play?");
+            string input = Console.ReadLine();
+            Int32.TryParse(input, out int lines);
             return lines;
         }
 

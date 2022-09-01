@@ -52,11 +52,12 @@ namespace SlotMachineGame
 
                     while (lines > credits)
                     {
-                        Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\nHow many lines would you like to play?");
-                        input = Console.ReadLine();
+                        /*Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\nHow many lines would you like to play?");
+                        input = Console.ReadLine();*/
+                        lines = UIMethods.NotEnoughCreditsToPlayLines(credits);
                     }
 
-                    Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
+                    Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
                     input = Console.ReadLine();
 
                     while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
@@ -76,7 +77,7 @@ namespace SlotMachineGame
                         totalBet = bet * lines;
                     }
 
-                    Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
+                    Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
                 }
 
@@ -167,12 +168,12 @@ namespace SlotMachineGame
                     //Payout calculation and Play Again
                     singleLineWinnings = totalLines * bet;
                     credits += singleLineWinnings;
-                    Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
+                    Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit:");
                     response = Console.ReadKey().KeyChar.ToString().ToUpper();
-
+                    Console.WriteLine(lines);
                 }
 
-                else totalLines = 0;
+                else 
                 {
                     //Loss deduction calculation and Play Again
                     credits -= totalBet;
