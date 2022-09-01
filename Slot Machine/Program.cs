@@ -11,15 +11,18 @@ namespace SlotMachineGame
             int credits = 0;
             char playAgain = 'Y';
             string response;
+            string input = "";
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
-            //Cash amount, intergers above 0 only
-            //Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!\nHow much cash would you like to use? Minimum $1: ");
+            //Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!") - Method below
             UIMethods.DisplayWelcomeMessage();
 
+            //Console.WriteLine("How much cash would you like to use? Minimum $1: ") - Method below
+            UIMethods.RequestCashToPlay();
 
-            string input = Console.ReadLine();
+            credits = UIMethods.RequestCashToPlay();
+
             while (!Int32.TryParse(input, out credits) || credits < 1)
             {
                 Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
@@ -76,6 +79,7 @@ namespace SlotMachineGame
                     Console.WriteLine($"You are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
                 }
+
 
                 //Creates grid array of 9 random numbers
                 for (int i = 0; i < slotNumber.GetLength(0); i++)
@@ -169,14 +173,14 @@ namespace SlotMachineGame
                 }
 
                 else totalLines = 0;
-                {   
+                {
                     //Loss deduction calculation and Play Again
                     credits -= totalBet;
                     if (credits > 0)
                     {
                         Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
                         response = Console.ReadKey().KeyChar.ToString().ToUpper();
-                    
+
                     }
 
                     if (credits == 0)
@@ -194,12 +198,13 @@ namespace SlotMachineGame
                     break;
                 }
 
-            } 
+            }
 
         }
     }
 
 }
+
 
 
 
