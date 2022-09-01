@@ -19,7 +19,7 @@ namespace SlotMachineGame
             UIMethods.DisplayWelcomeMessage();
 
             //Console.WriteLine("How much cash would you like to use? Minimum $1: ") - Method below
-            credits = UIMethods.RequestCashToPlay();
+            credits = UIMethods.RequestCreditsToPlay();
 
             /*
             while (!Int32.TryParse(input, out credits) || credits < 1)
@@ -57,7 +57,7 @@ namespace SlotMachineGame
                         lines = UIMethods.NotEnoughCreditsToPlayLines(credits);
                     }
 
-                    Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
+                    /*Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
                     input = Console.ReadLine();
 
                     while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
@@ -65,9 +65,10 @@ namespace SlotMachineGame
                         Console.WriteLine("This is not a valid input - please choose how many dollars per line you would like to bet -\nMinimum $1 per line\nMaximum $3 per line:  ");
                         input = Console.ReadLine();
                         Int32.TryParse(input, out bet);
-                    }
-
-                    totalBet = bet * lines;
+                    }*/
+                    bet = UIMethods.RequestBetToPlay(lines);
+                    //totalBet = bet * lines;
+                    totalBet = UIMethods.TotalBetAmount(lines, bet);
                     while (totalBet > credits)
                     {
                         Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");

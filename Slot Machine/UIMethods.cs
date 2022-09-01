@@ -14,7 +14,7 @@ namespace Slot_Machine
             Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
         }
 
-        public static int RequestCashToPlay()
+        public static int RequestCreditsToPlay()
         {
             int credits = 0;
             Console.WriteLine("How much cash would you like to use ? Minimum $1: ");
@@ -50,6 +50,26 @@ namespace Slot_Machine
             Int32.TryParse(input, out int lines);
             return lines;
         }
+        public static int RequestBetToPlay(int lines)
+        {
+            Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
+            string input = Console.ReadLine();
 
+            int bet = 0;
+            while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
+            {
+                Console.WriteLine("This is not a valid input - please choose how many dollars per line you would like to bet -\nMinimum $1 per line\nMaximum $3 per line:  ");
+                input = Console.ReadLine();
+                Int32.TryParse(input, out bet);
+            }
+            return bet;
+        }
+
+        public static int TotalBetAmount(int lines, int bet)
+        {
+            int totalBet = 0;
+            totalBet = bet * lines;
+            return totalBet;
+        }
     }
 }
