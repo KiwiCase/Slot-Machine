@@ -45,10 +45,8 @@ namespace Slot_Machine
         }
         public static int NotEnoughCreditsToPlayLines(int credits)
         {
-            Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\nHow many lines would you like to play?");
-            string input = Console.ReadLine();
-            Int32.TryParse(input, out int lines);
-            return lines;
+            Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\n");      
+            return credits;
         }
         public static int RequestBetToPlay(int lines)
         {
@@ -58,7 +56,7 @@ namespace Slot_Machine
             int bet = 0;
             while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
             {
-                Console.WriteLine("This is not a valid input - please choose how many dollars per line you would like to bet -\nMinimum $1 per line\nMaximum $3 per line:  ");
+                Console.WriteLine("This is not a valid input.");
                 input = Console.ReadLine();
                 Int32.TryParse(input, out bet);
             }
@@ -67,19 +65,13 @@ namespace Slot_Machine
 
         public static int TotalBetAmount(int lines, int bet)
         {
-            int totalBet = 0;
-            totalBet = bet * lines;
+            int totalBet = lines * bet;
             return totalBet;
         }
         public static int NotEnoughCreditsToPlayBet(int lines, int bet, int credits)
         {
-            Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
-            int totalBet = 0;
-            string input = Console.ReadLine();
-            Int32.TryParse(input, out bet);
-            totalBet = lines * bet;
-            Console.WriteLine(totalBet);
-            return totalBet;
+            Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits}");
+            return bet;
         }
     }
 }

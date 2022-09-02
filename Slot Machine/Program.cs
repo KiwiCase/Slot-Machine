@@ -7,11 +7,11 @@ namespace SlotMachineGame
     {
         static void Main(string[] args)
         {   //Important variables and Random Number Generator
+            
             int bet = 0;
             int credits = 0;
             char playAgain = 'Y';
             string response;
-            string input = "";
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -55,6 +55,7 @@ namespace SlotMachineGame
                         /*Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\nHow many lines would you like to play?");
                         input = Console.ReadLine();*/
                         lines = UIMethods.NotEnoughCreditsToPlayLines(credits);
+                        lines = UIMethods.RequestLinesToPlay(credits);
                     }
 
                     /*Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
@@ -71,19 +72,20 @@ namespace SlotMachineGame
                     //totalBet = bet * lines;
                     totalBet = UIMethods.TotalBetAmount(lines, bet);
 
-                    while (totalBet >= credits)
+                    while (totalBet > credits)
                     {
                         /*Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits} - please choose a less bet per line.\nMinimum $1 per line\nMaximum $3 per line: ");
                         input = Console.ReadLine();
                         totalBet = 0;
                         Int32.TryParse(input, out bet);
                         totalBet = bet * lines;*/
-                        totalBet = 0;
                         UIMethods.NotEnoughCreditsToPlayBet(lines, bet, credits);
+                        bet = UIMethods.RequestBetToPlay(lines);
+                        totalBet = UIMethods.TotalBetAmount(lines, bet);
                     }
 
-                    totalBet = UIMethods.TotalBetAmount(lines, bet);
-
+                    
+                    Console.WriteLine(totalBet);
                     Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
                     string keyChoice = Console.ReadLine();
                 }
