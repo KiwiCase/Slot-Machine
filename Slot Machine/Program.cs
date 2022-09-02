@@ -194,7 +194,7 @@ namespace SlotMachineGame
 
                     }
 
-                    if (credits == 0)
+                    else
                     {
                         Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
                         break;
