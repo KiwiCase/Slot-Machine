@@ -23,8 +23,6 @@ namespace Slot_Machine
             {
                 Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
                 input = Console.ReadLine();
-                Int32.TryParse(input, out credits);
-
             }
             return credits;
         }
@@ -39,7 +37,6 @@ namespace Slot_Machine
             {
                 Console.WriteLine("This is not a valid input.\nPlease choose 1 to 8 lines to play: ");
                 input = Console.ReadLine();
-                Int32.TryParse(input, out lines);
             }
             return lines;
         }
@@ -58,7 +55,6 @@ namespace Slot_Machine
             {
                 Console.WriteLine("This is not a valid input.");
                 input = Console.ReadLine();
-                Int32.TryParse(input, out bet);
             }
             return bet;
         }
@@ -68,10 +64,9 @@ namespace Slot_Machine
             int totalBet = lines * bet;
             return totalBet;
         }
-        public static int NotEnoughCreditsToPlayBet(int lines, int bet, int credits)
+        public static void NotEnoughCreditsToPlayBet(int credits)
         {
             Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits}");
-            return bet;
         }
 
         public static string PressEnterToSpin(int totalBet, int lines, int bet)

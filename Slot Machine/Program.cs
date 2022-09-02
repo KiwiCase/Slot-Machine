@@ -80,7 +80,7 @@ namespace SlotMachineGame
                         totalBet = 0;
                         Int32.TryParse(input, out bet);
                         totalBet = bet * lines;*/
-                        UIMethods.NotEnoughCreditsToPlayBet(lines, bet, credits);
+                        UIMethods.NotEnoughCreditsToPlayBet(credits);
                         bet = UIMethods.RequestBetToPlay(lines);
                         totalBet = UIMethods.TotalBetAmount(lines, bet);
                     }
