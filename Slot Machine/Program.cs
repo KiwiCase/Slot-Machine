@@ -12,6 +12,7 @@ namespace SlotMachineGame
             int credits = 0;
             char playAgain = 'Y';
             string response;
+            string keyChoice;
             Random rnd = new Random();
             int[,] slotNumber = new int[3, 3];
 
@@ -84,10 +85,10 @@ namespace SlotMachineGame
                         totalBet = UIMethods.TotalBetAmount(lines, bet);
                     }
 
-                    
-                    Console.WriteLine(totalBet);
+                    /*Console.WriteLine(totalBet);
                     Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
-                    string keyChoice = Console.ReadLine();
+                    string keyChoice = Console.ReadLine();*/
+                    keyChoice = UIMethods.PressEnterToSpin(totalBet, lines, bet);
                 }
 
 

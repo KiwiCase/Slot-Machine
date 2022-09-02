@@ -45,7 +45,7 @@ namespace Slot_Machine
         }
         public static int NotEnoughCreditsToPlayLines(int credits)
         {
-            Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\n");      
+            Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\n");
             return credits;
         }
         public static int RequestBetToPlay(int lines)
@@ -73,5 +73,14 @@ namespace Slot_Machine
             Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits}");
             return bet;
         }
+
+        public static string PressEnterToSpin(int totalBet, int lines, int bet)
+        {
+            Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
+            string keyChoice = Console.ReadLine();
+            return keyChoice;
+        }
+
     }
 }
+
