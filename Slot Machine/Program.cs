@@ -14,7 +14,7 @@ namespace SlotMachineGame
             string response;
             string keyChoice;
             Random rnd = new Random();
-            int[,] slotNumber = new int[3, 3];
+            
 
             //Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!") - Method below
             UIMethods.DisplayWelcomeMessage();
@@ -93,7 +93,7 @@ namespace SlotMachineGame
 
 
                 //Creates grid array of 9 random numbers
-                for (int i = 0; i < slotNumber.GetLength(0); i++)
+                /*for (int i = 0; i < slotNumber.GetLength(0); i++)
                 {
                     for (int j = 0; j < slotNumber.GetLength(1); j++)
                     {
@@ -105,7 +105,22 @@ namespace SlotMachineGame
                     }
                     Console.Write("\n\n");
 
+                }*/
+                int[,] slotNumber = Logic.NumberGridArray();
+
+                for (int i = 0; i < slotNumber.GetLength(0); i++)
+                {
+                    for (int j = 0; j < slotNumber.GetLength(1); j++)
+                    {
+
+                        {
+                            slotNumber[i, j] = rnd.Next(0, 4);
+                            Console.Write("{0}\t", slotNumber[i, j]);
+                        }
+                    }
+                    Console.Write("\n\n");
                 }
+
                 //Checks each line for matching numbers
                 totalLines = 0;
                 if (lines > 0)
@@ -193,7 +208,6 @@ namespace SlotMachineGame
                         response = Console.ReadKey().KeyChar.ToString().ToUpper();
 
                     }
-
                     else
                     {
                         Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
