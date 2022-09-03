@@ -206,7 +206,8 @@ namespace SlotMachineGame
                     }
                     else
                     {
-                        Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
+                        //Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
+                        UIMethods.YouLostNoMoneyLeft(totalBet, credits);
                         break;
                     }
 
@@ -214,8 +215,9 @@ namespace SlotMachineGame
 
                 if (response == "N")
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("OK then...Goodbye!");
+                    /*Console.WriteLine();
+                    Console.WriteLine("OK then...Goodbye!");*/
+                    UIMethods.PlayAgainNo();
                     break;
                 }
 

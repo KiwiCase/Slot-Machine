@@ -114,7 +114,16 @@ namespace Slot_Machine
             Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.");
         }
 
+        public static void YouLostNoMoneyLeft(int totalBet, int credits)
+        {
+            Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
+        }
 
+        public static void PlayAgainNo()
+        {
+            Console.WriteLine();
+            Console.WriteLine("OK then...Goodbye!");
+        }
     }
 }
 
