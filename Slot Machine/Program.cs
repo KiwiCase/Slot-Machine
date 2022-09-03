@@ -93,21 +93,9 @@ namespace SlotMachineGame
 
 
                 //Creates grid array of 9 random numbers
-                /*for (int i = 0; i < slotNumber.GetLength(0); i++)
-                {
-                    for (int j = 0; j < slotNumber.GetLength(1); j++)
-                    {
 
-                        {
-                            slotNumber[i, j] = rnd.Next(0, 4);
-                            Console.Write("{0}\t", slotNumber[i, j]);
-                        }
-                    }
-                    Console.Write("\n\n");
-
-                }*/
-                int[,] slotNumber = Logic.NumberGridArray();
-
+                rnd = new Random();
+                int[,] slotNumber = new int[3, 3];
                 for (int i = 0; i < slotNumber.GetLength(0); i++)
                 {
                     for (int j = 0; j < slotNumber.GetLength(1); j++)
@@ -122,7 +110,7 @@ namespace SlotMachineGame
                 }
 
                 //Checks each line for matching numbers
-                totalLines = 0;
+                /*totalLines = 0;
                 if (lines > 0)
                 {
                     if (slotNumber[1, 0] == slotNumber[1, 1] && slotNumber[1, 0] == slotNumber[1, 2])
@@ -185,7 +173,9 @@ namespace SlotMachineGame
                     {
                         totalLines++;
                     }
-                }
+                }*/
+
+                totalLines = Logic.TotalLinesWon(slotNumber, lines);
 
                 response = "";
                 if (totalLines > 0)
