@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Vml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,7 +75,26 @@ namespace Slot_Machine
             string keyChoice = Console.ReadLine();
             return keyChoice;
         }
-
+        public static int SingleLineWinningsAmount(int totalLines, int bet)
+        {
+            int singleLineWinnings = totalLines * bet;
+            return singleLineWinnings;
+        }
+        public static int TotalCreditsAmount(int credits, int singleLineWinnings)
+        {
+            credits += singleLineWinnings;
+            return credits;
+        }
+        public static void YouWon(int totalLines, int singleLineWinnings, int credits)
+        {
+            Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.");
+        }
+        public static string YouWonPlayAgain(string response)
+        {
+            Console.WriteLine("Press Y to play again or N to quit: ");
+            response = Console.ReadKey().KeyChar.ToString().ToUpper();
+            return response;
+        }
     }
 }
 

@@ -7,14 +7,14 @@ namespace SlotMachineGame
     {
         static void Main(string[] args)
         {   //Important variables and Random Number Generator
-            
+
             int bet = 0;
             int credits = 0;
             char playAgain = 'Y';
             string response;
             string keyChoice;
             Random rnd = new Random();
-            
+
 
             //Console.WriteLine($"Welcome to Casey's Supremely Awesome Slot Machine!") - Method below
             UIMethods.DisplayWelcomeMessage();
@@ -181,14 +181,17 @@ namespace SlotMachineGame
                 if (totalLines > 0)
                 {
                     //Payout calculation and Play Again
-                    singleLineWinnings = totalLines * bet;
-                    credits += singleLineWinnings;
-                    Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit:");
-                    response = Console.ReadKey().KeyChar.ToString().ToUpper();
-                    Console.WriteLine(lines);
+                    //singleLineWinnings = totalLines * bet;
+                    singleLineWinnings = UIMethods.SingleLineWinningsAmount(totalLines, bet);
+                    //credits += singleLineWinnings;
+                    credits = UIMethods.TotalCreditsAmount(credits, singleLineWinnings);
+                    //Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit:");
+                    UIMethods.YouWon(totalLines, singleLineWinnings, credits);
+                    //response = Console.ReadKey().KeyChar.ToString().ToUpper();
+                    response = UIMethods.YouWonPlayAgain(response);
                 }
 
-                else 
+                else
                 {
                     //Loss deduction calculation and Play Again
                     credits -= totalBet;
