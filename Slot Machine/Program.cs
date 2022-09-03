@@ -182,23 +182,26 @@ namespace SlotMachineGame
                 {
                     //Payout calculation and Play Again
                     //singleLineWinnings = totalLines * bet;
-                    singleLineWinnings = UIMethods.SingleLineWinningsAmount(totalLines, bet);
                     //credits += singleLineWinnings;
-                    credits = UIMethods.TotalCreditsAmount(credits, singleLineWinnings);
                     //Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit:");
-                    UIMethods.YouWon(totalLines, singleLineWinnings, credits);
                     //response = Console.ReadKey().KeyChar.ToString().ToUpper();
-                    response = UIMethods.YouWonPlayAgain(response);
+                    singleLineWinnings = UIMethods.SingleLineWinningsAmount(totalLines, bet);
+                    credits = UIMethods.TotalWonAndCreditsAmount(credits, singleLineWinnings);        
+                    UIMethods.YouWon(totalLines, singleLineWinnings, credits);
+                    response = UIMethods.PlayAgain(response);
                 }
 
                 else
                 {
                     //Loss deduction calculation and Play Again
-                    credits -= totalBet;
+                    //credits -= totalBet;
+                    credits = UIMethods.TotalLossAndCreditsAmount(credits, totalBet);
                     if (credits > 0)
                     {
-                        Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
-                        response = Console.ReadKey().KeyChar.ToString().ToUpper();
+                        //Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.\nPress Y to play again or N to quit.");
+                        //response = Console.ReadKey().KeyChar.ToString().ToUpper();
+                        UIMethods.YouLost(totalBet, credits);
+                        response = UIMethods.PlayAgain(response);
 
                     }
                     else

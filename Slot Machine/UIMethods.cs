@@ -40,11 +40,13 @@ namespace Slot_Machine
             }
             return lines;
         }
+
         public static int NotEnoughCreditsToPlayLines(int credits)
         {
             Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\n");
             return credits;
         }
+
         public static int RequestBetToPlay(int lines)
         {
             Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
@@ -64,6 +66,7 @@ namespace Slot_Machine
             int totalBet = lines * bet;
             return totalBet;
         }
+
         public static void NotEnoughCreditsToPlayBet(int credits)
         {
             Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits}");
@@ -75,26 +78,43 @@ namespace Slot_Machine
             string keyChoice = Console.ReadLine();
             return keyChoice;
         }
+
         public static int SingleLineWinningsAmount(int totalLines, int bet)
         {
             int singleLineWinnings = totalLines * bet;
             return singleLineWinnings;
         }
-        public static int TotalCreditsAmount(int credits, int singleLineWinnings)
+
+        public static int TotalWonAndCreditsAmount(int credits, int singleLineWinnings)
         {
             credits += singleLineWinnings;
             return credits;
         }
+
         public static void YouWon(int totalLines, int singleLineWinnings, int credits)
         {
             Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.");
         }
-        public static string YouWonPlayAgain(string response)
+
+        public static string PlayAgain(string response)
         {
             Console.WriteLine("Press Y to play again or N to quit: ");
             response = Console.ReadKey().KeyChar.ToString().ToUpper();
             return response;
         }
+
+        public static int TotalLossAndCreditsAmount(int credits, int totalBet)
+        {
+                credits -= totalBet;
+                return credits;
+        }
+
+        public static void YouLost(int totalBet, int credits)
+        {
+            Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.");
+        }
+
+
     }
 }
 
