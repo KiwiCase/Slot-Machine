@@ -6,17 +6,13 @@ namespace SlotMachineGame
     internal class Program
     {
         static void Main(string[] args)
-        {   //Important variables and Random Number Generator
-            int credits = 0;
-            char playAgain = 'Y';
-            string response;
-            Random rnd = new Random();
-
+        {   
             UIMethods.DisplayWelcomeMessage();
 
-            credits = UIMethods.RequestCreditsToPlay();
+            int credits = UIMethods.RequestCreditsToPlay();
 
             //Play Again loop
+            char playAgain = 'Y';
             while (playAgain == 'Y')
             {
                 //Lines played and betting amount variables.
@@ -29,7 +25,7 @@ namespace SlotMachineGame
 
                     while (lines > credits)
                     {
-                        lines = UIMethods.NotEnoughCreditsToPlayLines(credits);
+                        UIMethods.NotEnoughCreditsToPlayLines(credits);
                         lines = UIMethods.RequestLinesToPlay(credits);
                     }
 
@@ -49,6 +45,7 @@ namespace SlotMachineGame
                 }
 
                 //Creates grid array of 9 random numbers
+                Random rnd = new Random();
                 rnd = new Random();
                 int[,] slotNumber = new int[3, 3];
                 for (int i = 0; i < slotNumber.GetLength(0); i++)
@@ -66,7 +63,7 @@ namespace SlotMachineGame
            
                 int totalLines = Logic.TotalLinesWon(slotNumber, lines);
 
-                response = "";
+                string response = "";
                 if (totalLines > 0)
                 {
                     //Payout calculation and Play Again

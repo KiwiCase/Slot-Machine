@@ -41,10 +41,9 @@ namespace Slot_Machine
             return lines;
         }
 
-        public static int NotEnoughCreditsToPlayLines(int credits)
+        public static void NotEnoughCreditsToPlayLines(int credits)
         {
             Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\n");
-            return credits;
         }
 
         public static int RequestBetToPlay(int lines)
