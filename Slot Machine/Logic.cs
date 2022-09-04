@@ -11,6 +11,12 @@ namespace Slot_Machine
 {
     public static class Logic
     {
+        public static int BetDeduction(int credits, int totalBet)
+        {
+            credits -= totalBet;
+            return credits;
+        }
+
         public static int TotalLinesWon(int[,] slotNumber, int lines)
         {
             int totalLines = 0;
