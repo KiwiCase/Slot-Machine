@@ -28,7 +28,7 @@ namespace Slot_Machine
                 {
 
                     {
-                        slotNumber[i, j] = rnd.Next(0, 4);
+                        slotNumber[i, j] = rnd.Next(0, 99);
                         Logic.PrintArray(slotNumber, i, j);
                     }
                 }

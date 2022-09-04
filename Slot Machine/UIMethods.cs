@@ -17,11 +17,12 @@ namespace Slot_Machine
         public static int RequestCreditsToPlay()
         {
             int credits = 0;
-            Console.WriteLine("How much cash would you like to use ? Minimum $1: ");
+            Console.WriteLine("\n-------------------------------------------------");
+            Console.WriteLine("How much cash would you like to use ? Minimum $2: ");
             string input = Console.ReadLine();
-            while (!Int32.TryParse(input, out credits) || credits < 1)
+            while (!Int32.TryParse(input, out credits) || credits < 2)
             {
-                Console.WriteLine("This is not a valid input.\nPlease choose how much cash you would like to use - Minimum $1: ");
+                Console.WriteLine("\nThis is not a valid input.\nPlease choose how much cash you would like to use - Minimum $2: ");
                 input = Console.ReadLine();
             }
             return credits;
@@ -43,7 +44,7 @@ namespace Slot_Machine
 
         public static void NotEnoughCreditsToPlayLines(int credits)
         {
-            Console.WriteLine($"You do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.\n");
+            Console.WriteLine($"\nYou do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.");
         }
 
         public static int RequestBetToPlay(int lines)
@@ -54,7 +55,7 @@ namespace Slot_Machine
             int bet = 0;
             while (!Int32.TryParse(input, out bet) || bet > 3 || bet <= 0)
             {
-                Console.WriteLine("This is not a valid input.");
+                Console.WriteLine("\nThis is not a valid input.");
                 input = Console.ReadLine();
             }
             return bet;
@@ -102,20 +103,9 @@ namespace Slot_Machine
             return response;
         }
 
-        public static int TotalLossAndCreditsAmount(int credits, int totalBet)
-        {
-                credits -= totalBet;
-                return credits;
-        }
-
         public static void YouLost(int totalBet, int credits)
         {
             Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.");
-        }
-
-        public static void YouLostNoMoneyLeft(int totalBet, int credits)
-        {
-            Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left and cannot continue playing.\nGoodbye!");
         }
 
         public static void PlayAgainNo()

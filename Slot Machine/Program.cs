@@ -6,7 +6,7 @@ namespace SlotMachineGame
     internal class Program
     {
         static void Main(string[] args)
-        {   
+        {
             UIMethods.DisplayWelcomeMessage();
 
             int credits = UIMethods.RequestCreditsToPlay();
@@ -15,11 +15,15 @@ namespace SlotMachineGame
             char playAgain = 'Y';
             while (playAgain == 'Y')
             {
-                //Lines played and betting amount variables.
                 int lines = 0;
                 int bet = 0;
                 int totalBet = 0;
-                if (credits > 0)
+                if (credits < 2)
+                {
+                    credits = UIMethods.RequestCreditsToPlay();
+                }
+                //Lines played and betting amount variables.
+                if (credits >= 2)
                 {
                     lines = UIMethods.RequestLinesToPlay(credits);
 
@@ -40,12 +44,15 @@ namespace SlotMachineGame
                         totalBet = UIMethods.TotalBetAmount(lines, bet);
                     }
 
-                    credits = Logic.BetDeduction(credits, totalBet);
+                    //Credits deducting Bet
+
+                    Console.WriteLine(credits);
 
                     string keyChoice = UIMethods.PressEnterToSpin(totalBet, lines, bet);
                 }
-
+                //2D Array Generator and Printer
                 int[,] slotNumber = Logic.GenerateArray();
+                Console.WriteLine(credits);
 
                 int totalLines = Logic.TotalLinesWon(slotNumber, lines);
 
@@ -53,8 +60,9 @@ namespace SlotMachineGame
                 if (totalLines > 0)
                 {
                     //Payout calculation and Play Again
+                    credits = Logic.BetDeduction(credits, totalBet);
                     int singleLineWinnings = UIMethods.SingleLineWinningsAmount(totalLines, bet);
-                    credits = UIMethods.TotalWonAndCreditsAmount(credits, singleLineWinnings);        
+                    credits = UIMethods.TotalWonAndCreditsAmount(credits, singleLineWinnings);
                     UIMethods.YouWon(totalLines, singleLineWinnings, credits);
                     response = UIMethods.PlayAgain(response);
                 }
@@ -62,17 +70,17 @@ namespace SlotMachineGame
                 else
                 {
                     //Loss deduction calculation and Play Again
-                    credits = UIMethods.TotalLossAndCreditsAmount(credits, totalBet);
+                    credits = Logic.BetDeduction(credits, totalBet);
+                    Console.WriteLine(credits);
                     if (credits > 0)
                     {
                         UIMethods.YouLost(totalBet, credits);
                         response = UIMethods.PlayAgain(response);
-
                     }
                     else
                     {
-                        UIMethods.YouLostNoMoneyLeft(totalBet, credits);
-                        break;
+                        UIMethods.YouLost(totalBet, credits);
+                        response = UIMethods.PlayAgain(response);
                     }
 
                 }
