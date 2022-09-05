@@ -52,7 +52,6 @@ namespace SlotMachineGame
                 }
                 //2D Array Generator and Printer
                 int[,] slotNumber = Logic.GenerateArray();
-                Console.WriteLine(credits);
 
                 int totalLines = Logic.TotalLinesWon(slotNumber, lines);
 
@@ -71,7 +70,6 @@ namespace SlotMachineGame
                 {
                     //Loss deduction calculation and Play Again
                     credits = Logic.BetDeduction(credits, totalBet);
-                    Console.WriteLine(credits);
                     if (credits > 0)
                     {
                         UIMethods.YouLost(totalBet, credits);
