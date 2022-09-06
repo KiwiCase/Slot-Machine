@@ -72,11 +72,10 @@ namespace Slot_Machine
             Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits}");
         }
 
-        public static string PressEnterToSpin(int totalBet, int lines, int bet)
+        public static void PressEnterToSpin(int totalBet, int lines, int bet)
         {
             Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
             string keyChoice = Console.ReadLine();
-            return keyChoice;
         }
 
         public static int SingleLineWinningsAmount(int totalLines, int bet)

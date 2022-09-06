@@ -40,6 +40,7 @@ namespace Slot_Machine
         {
             Console.Write("{0}\t", slotNumber[i, j]);
         }
+
         public static int TotalLinesWon(int[,] slotNumber, int lines)
         {
             int totalLines = 0;
