@@ -26,11 +26,8 @@ namespace Slot_Machine
             {
                 for (int j = 0; j < slotNumber.GetLength(1); j++)
                 {
-
-                    {
                         slotNumber[i, j] = rnd.Next(0, 0);
                         Logic.PrintArray(slotNumber, i, j);
-                    }
                 }
                 Console.Write("\n\n");
             } return slotNumber;
