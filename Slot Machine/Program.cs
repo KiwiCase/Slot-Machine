@@ -13,7 +13,7 @@ namespace SlotMachineGame
 
             //Play Again loop
             char playAgain = 'Y';
-            while (playAgain == 'Y')
+            while (true)
             {
                 int lines = 0;
                 int bet = 0;
@@ -23,7 +23,7 @@ namespace SlotMachineGame
                     credits = UIMethods.RequestCreditsToPlay();
                 }
                 //Lines played and betting amount variables.
-                if (credits >= 2)
+                else 
                 {
                     lines = UIMethods.RequestLinesToPlay(credits);
 
