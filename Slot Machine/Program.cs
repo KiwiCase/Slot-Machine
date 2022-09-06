@@ -23,7 +23,7 @@ namespace SlotMachineGame
                     credits = UIMethods.RequestCreditsToPlay();
                 }
                 //Lines played and betting amount variables.
-                else 
+                else
                 {
                     lines = UIMethods.RequestLinesToPlay(credits);
 
@@ -70,17 +70,8 @@ namespace SlotMachineGame
                 {
                     //Loss deduction calculation and Play Again
                     credits = Logic.BetDeduction(credits, totalBet);
-                    if (credits > 0)
-                    {
-                        UIMethods.YouLost(totalBet, credits);
-                        response = UIMethods.PlayAgain(response);
-                    }
-                    else
-                    {
-                        UIMethods.YouLost(totalBet, credits);
-                        response = UIMethods.PlayAgain(response);
-                    }
-
+                    UIMethods.YouLost(totalBet, credits);
+                    response = UIMethods.PlayAgain(response);
                 }
 
                 if (response == "N")
