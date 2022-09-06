@@ -48,7 +48,7 @@ namespace SlotMachineGame
 
                     Console.WriteLine(credits);
 
-                    string keyChoice = UIMethods.PressEnterToSpin(totalBet, lines, bet);
+                    UIMethods.PressEnterToSpin(totalBet, lines, bet);
                 }
                 //2D Array Generator and Printer
                 int[,] slotNumber = Logic.GenerateArray();
