@@ -85,12 +85,13 @@ namespace Slot_Machine
             {
                 for (int j = 0; j < slotNumber.GetLength(1); j++)
                 {
-                    {
-                        Random rnd = new Random();
-                        slotNumber[i, j] = rnd.Next(0, 4);
 
-                    }
+                    Random rnd = new Random();
+                    slotNumber[i, j] = rnd.Next(0, 4);
+                    Console.Write("{0}\t", slotNumber[i, j]);
+
                 }
+                Console.Write("\n\n");
             }
         }
 

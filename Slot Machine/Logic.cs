@@ -24,13 +24,9 @@ namespace Slot_Machine
             for (int i = 0; i < slotNumber.GetLength(0); i++)
             {
                 for (int j = 0; j < slotNumber.GetLength(1); j++)
-                {
-                    {
+                {    
                         slotNumber[i, j] = rnd.Next(0, 4);
-                        Console.Write("{0}\t", slotNumber[i, j]);
-                    }
                 }
-                Console.Write("\n\n");
             } return slotNumber;
         }
         public static int TotalLinesWon(int[,] slotNumber, int lines)
