@@ -49,9 +49,11 @@ namespace SlotMachineGame
                     Console.WriteLine(credits);
 
                     UIMethods.PressEnterToSpin(totalBet, lines, bet);
+
                 }
                 //2D Array Generator and Printer
                 int[,] slotNumber = Logic.GenerateArray();
+                UIMethods.PrintArray(slotNumber);
 
                 int totalLines = Logic.TotalLinesWon(slotNumber, lines);
 

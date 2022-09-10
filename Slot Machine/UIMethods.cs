@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Vml;
+﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Vml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,26 @@ namespace Slot_Machine
             Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
             string keyChoice = Console.ReadLine();
         }
+
+        public static void PrintArray(int[,] slotNumber)
+        {
+            for (int i = 0; i < slotNumber.GetLength(0); i++)
+            {
+                for (int j = 0; j < slotNumber.GetLength(1); j++)
+                {
+                    {
+                        Random rnd = new Random();
+                        slotNumber[i, j] = rnd.Next(0, 4);
+
+                    }
+                }
+            }
+        }
+
+
+        //Console.Write("{0}\t", slotNumber[i, j]);
+        //Console.Write("\n\n");
+
 
         public static int SingleLineWinningsAmount(int totalLines, int bet)
         {

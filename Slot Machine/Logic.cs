@@ -20,24 +20,19 @@ namespace Slot_Machine
         public static int[,] GenerateArray()
         {
             Random rnd = new Random();
-            rnd = new Random();
             int[,] slotNumber = new int[3, 3];
             for (int i = 0; i < slotNumber.GetLength(0); i++)
             {
                 for (int j = 0; j < slotNumber.GetLength(1); j++)
                 {
-                        slotNumber[i, j] = rnd.Next(0, 0);
-                        Logic.PrintArray(slotNumber, i, j);
+                    {
+                        slotNumber[i, j] = rnd.Next(0, 4);
+                        Console.Write("{0}\t", slotNumber[i, j]);
+                    }
                 }
                 Console.Write("\n\n");
             } return slotNumber;
         }
-
-        public static void PrintArray(int[,] slotNumber,int i, int j)
-        {
-            Console.Write("{0}\t", slotNumber[i, j]);
-        }
-
         public static int TotalLinesWon(int[,] slotNumber, int lines)
         {
             int totalLines = 0;
