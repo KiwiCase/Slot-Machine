@@ -94,11 +94,6 @@ namespace Slot_Machine
             }
         }
 
-
-        //Console.Write("{0}\t", slotNumber[i, j]);
-        //Console.Write("\n\n");
-
-
         public static int SingleLineWinningsAmount(int totalLines, int bet)
         {
             int singleLineWinnings = totalLines * bet;
