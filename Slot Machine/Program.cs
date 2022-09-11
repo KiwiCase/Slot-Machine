@@ -51,7 +51,7 @@ namespace SlotMachineGame
                     UIMethods.PressEnterToSpin(totalBet, lines, bet);
 
                 }
-                //2D Array Generator and Printer
+                //2D Random Number Array Generator and Printer
                 int[,] slotNumber = Logic.GenerateArray();
                 UIMethods.PrintArray(slotNumber);
 

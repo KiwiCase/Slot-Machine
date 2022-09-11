@@ -29,6 +29,7 @@ namespace Slot_Machine
                 }
             } return slotNumber;
         }
+
         public static int TotalLinesWon(int[,] slotNumber, int lines)
         {
             int totalLines = 0;
