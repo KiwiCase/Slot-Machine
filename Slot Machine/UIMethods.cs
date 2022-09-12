@@ -10,12 +10,12 @@ namespace Slot_Machine
 {
     public static class UIMethods
     {
-        public static void DisplayWelcomeMessage()
+        public static void DisplayWelcomeMessage() //Welcome message
         {
             Console.WriteLine("Welcome to Casey's Supremely Awesome Slot Machine!");
         }
 
-        public static int RequestCreditsToPlay()
+        public static int RequestCreditsToPlay() //User cash input
         {
             int credits = 0;
             Console.WriteLine("\n-------------------------------------------------");
@@ -29,7 +29,7 @@ namespace Slot_Machine
             return credits;
         }
 
-        public static int RequestLinesToPlay(int credits)
+        public static int RequestLinesToPlay() //Lines input
         {
             int lines = 0;
             Console.WriteLine("\nHow many lines would you like to play? Choose 1 to 8 lines to play: ");
@@ -43,12 +43,12 @@ namespace Slot_Machine
             return lines;
         }
 
-        public static void NotEnoughCreditsToPlayLines(int credits)
+        public static void NotEnoughCreditsToPlayLines(int credits) 
         {
             Console.WriteLine($"\nYou do not have enough credits to play this many lines. You currently have ${credits} - please choose less lines to play.");
         }
 
-        public static int RequestBetToPlay(int lines)
+        public static int RequestBetToPlay(int lines) //User bet per line
         {
             Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")}...\nHow many dollars per line would you like to bet?\nMinumum $1 per line\nMaximum $3 per line: ");
             string input = Console.ReadLine();
@@ -62,24 +62,24 @@ namespace Slot_Machine
             return bet;
         }
 
-        public static int TotalBetAmount(int lines, int bet)
+        public static int TotalBetAmount(int lines, int bet) //User bet amount total
         {
             int totalBet = lines * bet;
             return totalBet;
         }
 
-        public static void NotEnoughCreditsToPlayBet(int credits)
+        public static void NotEnoughCreditsToPlayBet(int credits) 
         {
             Console.WriteLine($"You do not have enough cash to bet this amount per line. You currently have ${credits}");
         }
 
-        public static void PressEnterToSpin(int totalBet, int lines, int bet)
+        public static void PressEnterToSpin(int totalBet, int lines, int bet) //User input to spin
         {
             Console.WriteLine($"\nYou are playing {lines} {(lines > 1 ? "lines" : "line")} and betting ${bet} per line for a total of ${totalBet}. Press Enter To Spin... ");
-            string keyChoice = Console.ReadLine();
+            Console.ReadLine();
         }
 
-        public static void PrintArray(int[,] slotNumber)
+        public static void PrintArray(int[,] slotNumber) //Prints 2D Random Number Array
         {
             for (int i = 0; i < slotNumber.GetLength(0); i++)
             {
@@ -91,36 +91,36 @@ namespace Slot_Machine
             }
         }
 
-        public static int SingleLineWinningsAmount(int totalLines, int bet)
+        public static int SingleLineWinningsAmount(int totalLines, int bet) //Calculates single line amount
         {
             int singleLineWinnings = totalLines * bet;
             return singleLineWinnings;
         }
 
-        public static int TotalWonAndCreditsAmount(int credits, int singleLineWinnings)
+        public static int TotalWonAndCreditsAmount(int credits, int singleLineWinnings) //Calculates total win
         {
             credits += singleLineWinnings;
             return credits;
         }
 
-        public static void YouWon(int totalLines, int singleLineWinnings, int credits)
+        public static void YouWon(int totalLines, int singleLineWinnings, int credits) //User winnings
         {
             Console.WriteLine($"You won {totalLines} {(totalLines > 1 ? "lines" : "line")} and ${singleLineWinnings}!\nYou have a total of ${credits} left.");
         }
 
-        public static string PlayAgain(string response)
+        public static string PlayAgain() //Play again or not play again
         {
             Console.WriteLine("Press Y to play again or N to quit: ");
-            response = Console.ReadKey().KeyChar.ToString().ToUpper();
+            string response = Console.ReadKey().KeyChar.ToString().ToUpper();
             return response;
         }
 
-        public static void YouLost(int totalBet, int credits)
+        public static void YouLost(int totalBet, int credits) //User losses
         {
             Console.WriteLine($"You lost ${totalBet}!\nYou have a total of ${credits} left.");
         }
 
-        public static void PlayAgainNo()
+        public static void PlayAgainNo() //Play again no
         {
             Console.WriteLine();
             Console.WriteLine("OK then...Goodbye!");

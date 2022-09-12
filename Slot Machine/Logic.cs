@@ -13,8 +13,9 @@ namespace Slot_Machine
     {
         public static int BetDeduction(int credits, int totalBet)
         {
-            credits -= totalBet;
-            return credits;
+            //credits -= totalBet;
+            //return credits;
+            return credits - totalBet;
         }
 
         public static int[,] GenerateArray()
@@ -24,10 +25,11 @@ namespace Slot_Machine
             for (int i = 0; i < slotNumber.GetLength(0); i++)
             {
                 for (int j = 0; j < slotNumber.GetLength(1); j++)
-                {    
-                        slotNumber[i, j] = rnd.Next(0, 4);
+                {
+                    slotNumber[i, j] = rnd.Next(0, 4);
                 }
-            } return slotNumber;
+            }
+            return slotNumber;
         }
 
         public static int TotalLinesWon(int[,] slotNumber, int lines)
